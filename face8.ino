@@ -3,7 +3,11 @@
 // Roni Bandini @RoniBandini
 // Buenos Aires, Argentina
 // MIT License
+// Servo 1 left Servo 2 right. 
 
+// “A man sets himself the task of depicting the world. Year after year, he fills a space with images of  provinces, kingdoms, mountains, bays, ships, 
+// islands, fishes, rooms, instruments, stars, horses, and people. Just before he dies, he discovers that out of this patient labyrinth of lines emerge 
+// the features of his own face.” (Jorge Luis Borges)
 
 #include <Servo.h> 
 #include "ESP8266WiFi.h"
@@ -20,6 +24,12 @@ U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ 5, /* data=*/ 4
 Servo servo1;   
 Servo servo2;
 
+int servo1Angle1=180;
+int servo1Angle2=90;
+
+int servo2Angle1=90;
+int servo2Angle2=180;
+
 int butPin=0;
 int SSIDDetected=0;
 
@@ -31,8 +41,8 @@ int myDelayMove=1000;
 int manualMode=0;
 
 int ledPin=2;
-
-String ssidDetect="UT Soporte";
+ifwddasdiwee iqdqfowhfnowhoeooQ[HIFIUHFHAUDHDKJefibsnaaanadnlfjsfjihfjajofshcskjna  zckjnk
+String ssidDetect="XXXXXXX";
 
 static const unsigned char logo[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -131,9 +141,6 @@ void loop() {
   if (n == 0) {
     Serial.println("No routers found");
   } else {
-    
-    //Serial.print(n);
-    //Serial.println(" routers found");
 
     SSIDDetected=0;
     
@@ -143,14 +150,6 @@ void loop() {
         
         Serial.println("SSID detected");
         SSIDDetected=1;    
-
-        u8g2.clearBuffer();   
-        u8g2.setFont(u8g2_font_t0_11_tf);  
-        u8g2.drawStr(0,10,"Ibarrola aNtI rECON");  
-        u8g2.drawStr(0,20,"Roni Bandini");   
-        u8g2.drawStr(0,30,"SSID located o)");    
-        u8g2.sendBuffer();           
-        delay(2000);
       }
                         
     } // for SSID
@@ -195,8 +194,8 @@ void arm(){
     u8g2.drawStr(0,30,"Glasses armed");    
     u8g2.sendBuffer(); 
     
-    servo1.write(180);
-    servo2.write(0);   
+    servo1.write(servo1Angle1);
+    servo2.write(servo2Angle1);   
     disarmed=0;
     delay(myDelayMove);
   
@@ -212,8 +211,8 @@ void disarm(){
     u8g2.drawStr(0,30,"Glasses disarmed");    
     u8g2.sendBuffer(); 
     
-    servo1.write(90);
-    servo2.write(180);   
+    servo1.write(servo1Angle2);
+    servo2.write(servo2Angle1);   
     disarmed=1;
     delay(myDelayMove);
 }
